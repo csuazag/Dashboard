@@ -1,0 +1,76 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+.main-container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h1, h2{
+  font-family: 'Be Vietnam', sans-serif;
+}
+
+.color-gradient{
+  background: linear-gradient(to bottom, #33ccff 0%, #0099ff 100%);
+
+}
+
+.color-footer{
+  background-color: #262626;
+  color: #aaa;
+}
+
+p{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+agm-map {
+  height: 600px;
+}
+
+
+
+.text-menu{
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+}
+
+
+
+.img-logo{
+  width: 100px;
+  height: 80px;
+}
+  
+  
+  /* Animaciones */
+  
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+    
+.fast {
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+    
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+    
+    .fadeIn {
+      animation-name: fadeIn;
+    }

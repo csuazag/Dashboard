@@ -1,0 +1,289 @@
+<div class="main-content">
+    <div class="container">
+
+        <div class="row align-items-center animated fadeIn fast row-style" style="background-color: #FAFAFA">
+
+            <div class="col-6 pt-5 pb-5 pr-5">
+                <h1 class="text-center">DATASET</h1>
+                <hr>
+            </div>
+
+            <div class="col-6 pt-5 pb-5 pr-5">
+                <p class="text-justify">Nuestros modelos fueron entrenados realizando un Dataset Artificial, los
+                    datos
+                    fueron
+                    capturados de distintos dataset de la ciudad de New York <a
+                        href="https://opendata.cityofnewyork.us/">NYC
+                        Open Data</a>,
+                    a continuación explicaremos cuáles son los descriptores necesarios y el significado de cada
+                    uno.</p>
+            </div>
+
+        </div>
+
+
+
+        <div class="row align-items-center animated fadeIn fast row-style mt-5">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Descriptores</h4>
+                        <p class="card-category">Descripción detallada de los descriptores necesarios para el
+                            entrenamiento de los modelos de aprendizaje automático.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="w-25">Descriptor</th>
+                                        <th class="w-50">Descripción</th>
+                                        <th class="w-25" class="font-italic">Tipo de Dato</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Zona</strong></td>
+                                        <td>Indica el municipio al que pertenece el registro de la calle.</td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Sub Zona</strong></td>
+                                        <td>Indica el barrio al que pertenece el registro de la calle.</td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Num. Vehículos</strong></td>
+                                        <td>Contabiliza la cantidad de vehículos que se movilizaron por calle dada la
+                                            hora en
+                                            específico.
+                                        </td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Velocidad Promedio</strong></td>
+                                        <td>Registro promedio de los vehículos que se movilizaron por la calle.</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Tiempo Promedio</strong></td>
+                                        <td>Registro del tiempo promedio que tomaron los vehículos en movilizarse por la
+                                            calle.</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fecha</strong></td>
+                                        <td>Fecha del registro que relaciona el flujo vehicular con la fecha y hora. Se
+                                            compone de una
+                                            cadena con 'MM/DD/AA H', Ejemplo: 03-01-2017 05 donde 05 indica la hora</td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Nombre de calles</strong></td>
+                                        <td>Indica el nombre de la calle origen y la calle destino</td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Encoded Polyline</strong></td>
+                                        <td>Representa en una cadena cifrada un arreglo de Json que contienen la latitud
+                                            y longitud de
+                                            la
+                                            calle. Para conocer más <a
+                                                href="https://developers.google.com/maps/documentation/utilities/polylineutility">Click
+                                                Aquí</a></td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Humedad</strong></td>
+                                        <td>El grado o cantidad de humedad de aire obtenido de registros meteorológicos
+                                            de la ciudad de
+                                            New
+                                            York. </td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Humedad</strong></td>
+                                        <td>El grado o cantidad de humedad de aire obtenido de registros meteorológicos
+                                            de la ciudad de
+                                            New
+                                            York. El valor numérico es un porcentaje entre 0 y 100</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Presión</strong></td>
+                                        <td>Presión atmosférica tomado de registros meteorológicos de la ciudad de New
+                                            York. El valor número es un numero mayor o igual a 0</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Temperatura</strong></td>
+                                        <td>Temperatura atmosférica tomado de registros meteorológicos de la ciudad de
+                                            New
+                                            York. El valor número es medido en grados fahrenheit</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Descripcion Clima</strong></td>
+                                        <td>Para este descriptor definimos 30 posible valores:
+                                            <ul>
+                                                <li>sky is clear</li>
+                                                <li>ew clouds</li>
+                                                <li>ight rain</li>
+                                                <li>hunderstorm</li>
+                                                <li>roken clouds</li>
+                                                <li>vercast clouds</li>
+                                                <li>og</li>
+                                                <li>ist</li>
+                                                <li>ight intensity drizzle</li>
+                                                <li>scattered clouds</li>
+                                                <li>haze</li>
+                                                <li>thunderstorm with light rain</li>
+                                                <li>heavy intensity rain</li>
+                                                <li>moderate rain</li>
+                                                <li>proximity thunderstorm</li>
+                                                <li>very heavy rain</li>
+                                                <li>dust</li>
+                                                <li>smoke</li>
+                                                <li>snow</li>
+                                                <li>thunderstorm with rain</li>
+                                                <li>proximity shower rain</li>
+                                                <li>light snow</li>
+                                                <li>drizzle</li>
+                                                <li>thunderstorm with heavy rain</li>
+                                                <li>shower rain</li>
+                                                <li>squalls</li>
+                                                <li>heavy intensity drizzle</li>
+                                                <li>proximity moderate rain</li>
+                                                <li>proximity thunderstorm with rain</li>
+                                                <li>heavy snow</li>
+                                            </ul>
+                                        </td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Dirección del Viento</strong></td>
+                                        <td>Valor numérico representado en coordenadas polares</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Velocidad del Viento</strong></td>
+                                        <td>Valor numérico representado KM/H</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Accidentes</strong></td>
+                                        <td>Cantidad de accidentes reportados en la hora y lugar de la calle</td>
+                                        <td class="font-italic">Integer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Heridos</strong></td>
+                                        <td>Cantidad de personas heridas registrados</td>
+                                        <td class="font-italic">Integer</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Muertos</strong></td>
+                                        <td>Cantidad de personas muertas</td>
+                                        <td class="font-italic">Integer</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row align-items-center animated fadeIn fast row-style">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title ">Barrios</h4>
+                        <p class="card-category">Este dataset relaciona la información de cada barrio de la ciudad con
+                            sus
+                            cordenadas de latitud y longitud, el objetivo de este dataset es para el uso de la
+                            representación en mapa de los resultados de los modelos.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th class="w-25">Descriptor</th>
+                                        <th class="w-50">Descripción</th>
+                                        <th class="w-25">Tipo de Dato</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Barrio</strong></td>
+                                        <td>Nombre del barrio</td>
+                                        <td clasS="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Municipio</strong></td>
+                                        <td>Nombre del municipio al que pertenece el barrio</td>
+                                        <td class="font-italic">String</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Latitud</strong></td>
+                                        <td>Cordenadas de Latitud del barrio, es un centroide en el barrio.</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Longitud</strong></td>
+                                        <td>Coordenadas de Longitud del barrio, es un centroide en el barrio.</td>
+                                        <td class="font-italic">Float</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-around mt-5">
+            <div class="col-md-4 ">
+                <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Dataset</h5>
+                        <ol>
+                            <li>
+                                <p>Type: CSV Document</p>
+                            </li>
+                            <li>
+                                <p>Size: 73.3 kB (73,349 bytes)</p>
+                            </li>
+                        </ol>
+                        <br>
+
+                        <button type="button" class="btn btn-secondary btn-block">Descargar</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Barrios</h5>
+                        <ol>
+                            <li>
+                                <p>Type: CSV Document</p>
+                            </li>
+                            <li>
+                                <p>Size: 73.3 kB (73,349 bytes)</p>
+                            </li>
+                        </ol>
+                        <br>
+
+                        <button type="button" class="btn btn-secondary btn-block">Descargar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
