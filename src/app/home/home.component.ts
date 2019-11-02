@@ -10,9 +10,7 @@ import { ChartsService } from './../services/charts.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private chartService: ChartsService) {
-    this.chartService.getJson();
-  }
+  constructor(private chartService: ChartsService) { }
 
   ngOnInit() {
   }

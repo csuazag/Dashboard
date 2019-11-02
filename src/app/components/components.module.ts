@@ -6,10 +6,14 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
+import { AgmCoreModule } from '@agm/core';
+
+
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    AgmCoreModule
   ],
   declarations: [
     FooterComponent,

@@ -1,1 +1,48 @@
-<div id="map"></div>
+<div class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-info">
+                        <h4 class="card-title">Clasificación Zonas</h4>
+                    </div>
+                    <div class="card-body">
+                        
+                            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+        
+                            <agm-marker *ngFor="let marker of allMarkers"  [latitude]="marker.latitude" [longitude]="marker.longitude">
+        
+                                <agm-info-window>
+                                    <p class="text-info">{{ marker.neighborhood }}</p>
+                                    <p class="text-gray">{{ marker.borough }}</p> 
+                                    <br>
+                                    <br>
+                                    <p class="text-danger">{{ marker.type }}</p>
+                                </agm-info-window>
+                            </agm-marker>
+        
+                        </agm-map>
+                        
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Full header coloured</h4>
+
+                    </div>
+                    <div class="card-body">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
