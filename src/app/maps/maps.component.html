@@ -7,22 +7,28 @@
                         <h4 class="card-title">Clasificación Zonas</h4>
                     </div>
                     <div class="card-body">
-                        
-                            <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
-        
-                            <agm-marker *ngFor="let marker of allMarkers"  [latitude]="marker.latitude" [longitude]="marker.longitude">
-        
-                                <agm-info-window>
-                                    <p class="text-info">{{ marker.neighborhood }}</p>
-                                    <p class="text-gray">{{ marker.borough }}</p> 
+
+                        <agm-circle *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
+                        [longitude]="marker.longitude" [radius]="100" [fillColor]="FF0000">
+
+                        </agm-circle>
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+
+                            <agm-marker *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
+                                [longitude]="marker.longitude">
+
+                                <agm-info-window [disableAutoPan]="true">
+                                    <p class="text-info">{{ marker['neighborhood'] }}</p>
+                                    <p class="text-gray">{{ marker.borough }}</p>
                                     <br>
                                     <br>
                                     <p class="text-danger">{{ marker.type }}</p>
                                 </agm-info-window>
+
                             </agm-marker>
-        
+
                         </agm-map>
-                        
+
 
 
 

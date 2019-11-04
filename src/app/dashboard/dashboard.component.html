@@ -141,6 +141,8 @@
 
         <div class="row">
 
+            <app-loading *ngIf="hide"></app-loading>
+
             <div class="col-md-12">
                 <div class="card card-chart">
                     <div class="card-header card-header-success">
@@ -153,17 +155,11 @@
                         <br><br>
                         <h5 class="text-success">Seleccionar día</h5>
                         <div class="form-group">
-                            <select class="form-control" id="daySelect" [(ngModel)]='day'>
-                                <option value="Lunes">Lunes</option>
-                                <option value="Martes">Martes</option>
-                                <option value="Miercoles">Miércoles</option>
-                                <option value="Jueves">Jueves</option>
-                                <option value="Viernes">Viernes</option>
-                                <option value="Sabado">Sábado</option>
-                                <option value="Domingo">Domingo</option>
+                            <select class="form-control" id="daySelect" [(ngModel)]='nextDay'>
+                                <option *ngFor="let day of dayOptions" [value]="day">{{ day }}</option>
                             </select>
                         </div>
-                        <button (click)="actualizarChartDayHour()" class="btn btn-success">Cargar</button>
+                        <button (click)="actualizarChartDayHour( )" class="btn btn-success">Cargar</button>
 
                     </div>
 

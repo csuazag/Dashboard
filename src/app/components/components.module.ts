@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 import { AgmCoreModule } from '@agm/core';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    LoadingComponent
   ],
   exports: [
     FooterComponent,
