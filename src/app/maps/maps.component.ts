@@ -18,47 +18,63 @@ interface Marker {
 
 export class MapsComponent implements OnInit {
 
+    showGreen = true;
+    showMarkers = true;
+    
+
+    hideMarkers = 'show';
+    zona = 'segura';
+
+    allMarkersGreen: Marker[] = [];
+    allMarkersRed: Marker[] = [];
     allMarkers: Marker[] = [];
 
     lat = 40.7142715;
     lng = -74.0059662;
 
-    zona  = 'segura';
-
-
-
     constructor(private mapService: MapService) {
-        /**
+
         this.mapService.getZonas().subscribe(data => {
 
             for (let i = 0; i < data['data'].length; i++) {
                 const label = data['data'][i]['label'];
-                console.log(label);
 
-                let color: string = '';
                 if (label == 'Segura') {
-                    color = "\'green\'";
+                    this.allMarkersGreen.push(data['data'][i]);
+
                 } else if (label == 'Peligrosa') {
-                    color = "\'red\'";
+                    this.allMarkersRed.push(data['data'][i]);
+
                 } else {
-                    color = "\'gray\'";
+                    this.allMarkersRed.push(data['data'][i]);
                 }
-                console.log(color);
-                data['data'][i]['color'] = color;
             }
             this.allMarkers = data['data'];
-            console.log(this.allMarkers);
-        
-
         });
-         */
+
     }
 
     ngOnInit() {
 
     }
 
-  
+    setRadioZona() {
+        if (this.zona == 'segura') {
+            this.showGreen = true;
+        } else {
+            this.showGreen = false;
+        }
+    }
+
+    setRadioMarkers(){
+        if(this.hideMarkers == 'show'){
+            this.showMarkers = true;
+        }else{
+            this.showMarkers = false;
+        }
+    }
+
+
 
 
 }

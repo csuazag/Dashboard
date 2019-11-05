@@ -9,39 +9,75 @@
                     <div class="card-body">
 
 
-                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
+                        <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
 
-                            <agm-circle *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
-                                [longitude]="marker.longitude" [radius]="500" [fillColor]="'green'">
+                            <div *ngIf="showGreen">
+                                <agm-circle *ngFor="let marker of allMarkersGreen" [latitude]="marker.latitude"
+                                    [longitude]="marker.longitude" [radius]="500" [fillColor]="'green'">
+                                </agm-circle>
+                                <div *ngIf="showMarkers">
+                                    <agm-marker *ngFor="let marker of allMarkersGreen" [latitude]="marker.latitude"
+                                        [longitude]="marker.longitude">
+                                        <agm-info-window [disableAutoPan]="true">
+                                            {{marker.Borough}}, {{marker.Name}}, <strong> Zona {{marker.label}}</strong>
+                                        </agm-info-window>
+                                    </agm-marker>
+                                </div>
+                            </div>
 
-
-                            </agm-circle>
-                            <agm-marker *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
-                                [longitude]="marker.longitude">
-
-                                <agm-info-window [disableAutoPan]="true">
-                                    {{marker.Borough}}, {{marker.Name}}, <strong> Zona {{marker.label}}</strong>
-                                </agm-info-window>
-
-                            </agm-marker>
-
-                        </agm-map>
-
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <div class="form-control">
-                                        <label class="radio-inline">
-                                            <input type="radio" value="segura" name="zona" [(ngModel)]="zona">
-                                        </label>
-                                        <label class="radio-inline">
-                                                <input type="radio" value="peligrosa" name="zona" [(ngModel)]="zona"
-                                        </label>
-                                    </div>
+                            <div *ngIf="!showGreen">
+                                <agm-circle *ngFor="let marker of allMarkersRed" [latitude]="marker.latitude"
+                                    [longitude]="marker.longitude" [radius]="500" [fillColor]="'red'">
+                                </agm-circle>
+                                <div *ngIf="showMarkers">
+                                    <agm-marker *ngFor="let marker of allMarkersRed" [latitude]="marker.latitude"
+                                        [longitude]="marker.longitude">
+                                        <agm-info-window [disableAutoPan]="true">
+                                            {{marker.Borough}}, {{marker.Name}}, <strong> Zona {{marker.label}}</strong>
+                                        </agm-info-window>
+                                    </agm-marker>
                                 </div>
 
+
+                            </div>
+                        </agm-map>
+
+
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" value="segura" name="zona" [(ngModel)]="zona"> Zona
+                                        Segura
+                                    </label>
+                                    <label class="radio-inline ml-5">
+                                        <input type="radio" value="peligrosa" name="zona" [(ngModel)]="zona">
+                                        Zona Peligrosa
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button (click)="setRadioZona()" class="btn btn-info"> Cambiar</button>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" value="show" name="hideMarkers" [(ngModel)]="hideMarkers">
+                                        Mostrar Markers
+                                    </label>
+                                    <label class="radio-inline ml-5">
+                                        <input type="radio" value="hide" name="hideMarkers" [(ngModel)]="hideMarkers">
+                                        Ocultar Markers
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button (click)="setRadioMarkers()" class="btn btn-info"> Cambiar</button>
+                            </div>
+                        </div>
+                        <p class="text-dark">Cada punto representa un barrio y su estado</p>
                     </div>
                 </div>
             </div>
