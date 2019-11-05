@@ -11,6 +11,8 @@ import { IconsComponent } from '../../icons/icons.component';
 import { MapsComponent } from '../../maps/maps.component';
 import { HomeComponent } from '../../home/home.component';
 import { AgmCoreModule } from '@agm/core';
+import { LoadingComponent } from '../../loading/loading.component';
+
 
 
 
@@ -44,7 +46,8 @@ import {
     TeamComponent,
     IconsComponent,
     MapsComponent,
-    HomeComponent
+    HomeComponent,
+    LoadingComponent
   ]
 })
 

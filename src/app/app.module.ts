@@ -20,9 +20,11 @@ import { TeamComponent } from './team/team.component';
 import { IconsComponent } from './icons/icons.component';
 import { MapsComponent } from './maps/maps.component';
 import { HomeComponent } from './home/home.component';
+import { LoadingComponent } from './loading/loading.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+
 
 @NgModule({
   imports: [

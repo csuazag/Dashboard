@@ -8,32 +8,40 @@
                     </div>
                     <div class="card-body">
 
-                        <agm-circle *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
-                        [longitude]="marker.longitude" [radius]="100" [fillColor]="FF0000">
 
-                        </agm-circle>
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="15">
 
+                            <agm-circle *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
+                                [longitude]="marker.longitude" [radius]="500" [fillColor]="'green'">
+
+
+                            </agm-circle>
                             <agm-marker *ngFor="let marker of allMarkers" [latitude]="marker.latitude"
                                 [longitude]="marker.longitude">
 
                                 <agm-info-window [disableAutoPan]="true">
-                                    <p class="text-info">{{ marker['neighborhood'] }}</p>
-                                    <p class="text-gray">{{ marker.borough }}</p>
-                                    <br>
-                                    <br>
-                                    <p class="text-danger">{{ marker.type }}</p>
+                                    {{marker.Borough}}, {{marker.Name}}, <strong> Zona {{marker.label}}</strong>
                                 </agm-info-window>
 
                             </agm-marker>
 
                         </agm-map>
 
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label class="radio-inline">
+                                            <input type="radio" value="segura" name="zona" [(ngModel)]="zona">
+                                        </label>
+                                        <label class="radio-inline">
+                                                <input type="radio" value="peligrosa" name="zona" [(ngModel)]="zona"
+                                        </label>
+                                    </div>
+                                </div>
 
-
-
-
-
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as Chartist from 'chartist';
 import { ChartsService } from '../services/charts.service';
-import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-dashboard',
@@ -16,18 +16,10 @@ export class DashboardComponent implements OnInit {
   dayOptions: string[];
   nextDay: string;
 
-  hide: boolean;
+  hideLoading1: boolean;
+  hideLoading2: boolean;
 
-  boxes: any = {
-    average_speed: 0,
-    average_time: 0,
-    total_accidents: 0,
-    total_dead: 0,
-    total_injured: 0,
-    total_subZones: 0,
-    total_vehicles: 0,
-    total_zones: 0,
-  };
+  boxes: any = {};
 
 
   labelsChartDayxHour: any[] = [];
@@ -36,39 +28,41 @@ export class DashboardComponent implements OnInit {
   constructor(private chartService: ChartsService) {
 
     this.day = 'Lunes';
+    this.nextDay = 'Lunes';
     this.dayOptions = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 
 
-    
+    this.hideLoading1 = true;
     this.chartService.getMetaData().subscribe(data => {
       this.boxes = data;
-      console.log(data);
+      this.hideLoading1 = false;
     });
 
 
-    const dataDayHour: any = {
-      labels: this.labelsChartDayxHour,
-      series: this.seriesChartDayxHour
-    };
-
-    const optionDayHour: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: 50,
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
-    }
-
-    const dayHour = new Chartist.Line('#chartDayHourChart', dataDayHour, optionDayHour);
-    this.startAnimationForLineChart(dayHour);
 
 
-  this.hide
+    this.hideLoading2 = true;
     this.chartService.getChartDayxHour(1).subscribe(data => {
       this.labelsChartDayxHour = data['labels'];
       this.seriesChartDayxHour = data['series'];
+      this.hideLoading2 = false;
 
+      const dataDayHour: any = {
+        labels: this.labelsChartDayxHour,
+        series: this.seriesChartDayxHour
+      };
+
+      const optionDayHour: any = {
+        lineSmooth: Chartist.Interpolation.cardinal({
+          tension: 0
+        }),
+        low: 0,
+        high: 70,
+        chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+      }
+
+      const dayHour = new Chartist.Line('#chartDayHourChart', dataDayHour, optionDayHour);
+      this.startAnimationForLineChart(dayHour)
     });
 
   }
@@ -134,6 +128,18 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.boxes = {
+      average_speed: 0,
+      average_time: 0,
+      total_accidents: 0,
+      total_dead: 0,
+      total_injured: 0,
+      total_subZones: 0,
+      total_vehicles: 0,
+      total_zones: 0
+    }
+
     /* ----------==========     Promedio vs Hora (Día)    ==========---------- */
 
 
@@ -184,6 +190,7 @@ export class DashboardComponent implements OnInit {
 
     // Chart Average vs Hour according a day of the week
 
+    /**
     const dataForChartMine: any = {
       labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24],
       series: [[5, 2, 8, 3, 5, 0, 2, 44, 5, 2, 8, 3, 5, 0, 2, 44, 5, 2, 8, 3, 5, 0, 2, 44,]]
@@ -199,6 +206,7 @@ export class DashboardComponent implements OnInit {
 
 
     this.startAnimationForLineChart(chartMine);
+     */
   }
 
 
@@ -228,39 +236,34 @@ export class DashboardComponent implements OnInit {
       }
 
       this.chartService.getChartDayxHour(param).subscribe(data => {
-        this.labelsChartDayxHour = data['label'];
+        this.labelsChartDayxHour = data['labels'];
         this.seriesChartDayxHour = data['series'];
-        console.log("melo");
+
+        console.log(this.labelsChartDayxHour);
+        console.log(this.labelsChartDayxHour)
+
+        const dataDayHour: any = {
+          labels: this.labelsChartDayxHour,
+          series: this.seriesChartDayxHour
+        };
+
+        const optionDayHour: any = {
+          lineSmooth: Chartist.Interpolation.cardinal({
+            tension: 0
+          }),
+          low: 0,
+          high: 60,
+          chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
+        }
+
+        const dayHour = new Chartist.Line('#chartDayHourChart', dataDayHour, optionDayHour);
+        this.startAnimationForLineChart(dayHour);
+
       });
-
-
-    } else {
-
     }
 
 
-
-
-
-
-    const dataDayHour: any = {
-      labels: this.labelsChartDayxHour,
-      series: this.seriesChartDayxHour
-    };
-
-    const optionDayHour: any = {
-      lineSmooth: Chartist.Interpolation.cardinal({
-        tension: 0
-      }),
-      low: 0,
-      high: 50,
-      chartPadding: { top: 0, right: 0, bottom: 0, left: 0 },
-    }
-
-    const dayHour = new Chartist.Line('#chartDayHourChart', dataDayHour, optionDayHour);
-    this.startAnimationForLineChart(dayHour);
 
   }
 
 }
-

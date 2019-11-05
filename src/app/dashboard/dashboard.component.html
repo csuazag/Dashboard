@@ -1,5 +1,10 @@
 <div class="main-content">
     <div class="container-fluid">
+        <div class="row" *ngIf="hideLoading2">
+            <div class="col-12 text-center">
+                <app-loading></app-loading>
+            </div>
+        </div>
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
@@ -8,7 +13,7 @@
                             <i class="material-icons">directions_car</i>
                         </div>
                         <p class="card-category">Velocidad Promedio</p>
-                        <h3 class="card-title"> {{ boxes.average_speed }} </h3>
+                        <h3 class="card-title"> {{ boxes.average_speed | number : '1.2-2' }} </h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -24,7 +29,7 @@
                             <i class="material-icons">av_timer</i>
                         </div>
                         <p class="card-category">Tiempo Promedio</p>
-                        <h3 class="card-title">{{ boxes.average_time }}</h3>
+                        <h3 class="card-title">{{ boxes.average_time | number : '1.2-2' }}</h3>
                     </div>
                     <div class="card-footer">
                         <div class="stats">
@@ -139,10 +144,13 @@
 
 
 
+        <div class="row" *ngIf="hideLoading2">
+            <div class="col-12 text-center">
+                <app-loading></app-loading>
+            </div>
+        </div>
+
         <div class="row">
-
-            <app-loading *ngIf="hide"></app-loading>
-
             <div class="col-md-12">
                 <div class="card card-chart">
                     <div class="card-header card-header-success">
@@ -150,8 +158,8 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Flujo Vehicular Diario {{ day }}</h4>
-                        <p class="card-category">Puedes seleccionar el día para tener el promedio de movilidad dado el
-                            histórico</p>
+                        <p class="card-category">Puedes seleccionar el día para tener el promedio de movilidad
+                            dado elhistórico</p>
                         <br><br>
                         <h5 class="text-success">Seleccionar día</h5>
                         <div class="form-group">
@@ -170,9 +178,11 @@
 
 
 
+        <!--
+
 
         <div class="row">
-            
+
             <div class="col-md-12">
                 <div class="card card-chart">
                     <div class="card-header card-header-info">
@@ -180,7 +190,9 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Temperatura Promedio</h4>
-                        <p class="card-category">Este diagrama refleja el promedio por día de la semana, para sacar este
+                        <p class="card-category">Este diagrama refleja el promedio por día de la semana, para
+                            sacar
+                            este
                             promedio se saca del histórico del comportamiento basado en todo el dataset.</p>
                     </div>
                     <div class="card-footer">
@@ -191,7 +203,7 @@
                 </div>
             </div>
         </div>
-
+-->
         <!--
 
         
