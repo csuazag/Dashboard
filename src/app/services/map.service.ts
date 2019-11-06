@@ -21,7 +21,7 @@ export class MapService {
   }
 
   getFlujo() {
-    return this.http.head('http://3.87.219.83:5000/Concurrent_zone_clasification');
+    return this.http.get('http://3.87.219.83:5000/Concurrent_zone_clasification');
   }
 
 }

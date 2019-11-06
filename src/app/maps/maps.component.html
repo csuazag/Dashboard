@@ -43,7 +43,7 @@
                         </agm-map>
 
 
-                        <div class="row">
+                        <div class="row mt-5">
                             <div class="col-8">
                                 <div class="form-group">
                                     <label class="radio-inline">
@@ -77,19 +77,31 @@
                                 <button (click)="setRadioMarkers()" class="btn btn-info"> Cambiar</button>
                             </div>
                         </div>
-                        <p class="text-dark">Cada punto representa un barrio y su estado</p>
+                        <p class="text-dark mt-2">Cada punto representa un barrio y su estado</p>
                     </div>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header card-header-danger">
-                        <h4 class="card-title">Full header coloured</h4>
-
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title">Flujo Vehicular</h4>
                     </div>
                     <div class="card-body">
+                        <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="13">
 
+
+                            <ng-container *ngFor="let barrio of allRoutesConcurridaTracks; let j = index;">
+                                <agm-polyline *ngFor="let tramo of barrio "
+                                    [strokeColor]="'red'">
+                                    <agm-polyline-point *ngFor="let point of tramo;" [latitude]="point.lat"
+                                        [longitude]="point.lng">
+                                    </agm-polyline-point>
+                                </agm-polyline>
+                            </ng-container>
+
+
+                        </agm-map>
                     </div>
                 </div>
             </div>
