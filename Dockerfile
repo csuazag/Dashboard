@@ -1,5 +1,5 @@
 
-FROM node:10.9.1
+FROM node:12.13.0
 
 LABEL version="1.0"
 LABEL description="Web app p2"
