@@ -11,6 +11,6 @@ WORKDIR /nodeApp
 COPY . ./
 
 RUN npm install -g
-
+RUN npm install -g @angular/cli 
 EXPOSE 3000
 CMD ng serve
