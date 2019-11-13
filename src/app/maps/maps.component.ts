@@ -48,14 +48,18 @@ export class MapsComponent implements OnInit {
 
     /** FLUJO */
 
+    showRoutesGreen = false;
+
     allRoutesInfo: Route[] = [];
     allRoutesTraks: any[] = [];
 
-    allRoutesConcurridaInfo: Route[] = [];
+    allRoutesConcurridaInfo: Route[] = []; // Trafico Rapido! osea verde
     allRoutesConcurridaTracks: any[] = [];
+    markersConcurridaTracks: any[] = [];
 
-    allRoutesVaciaInfo: Route[] = [];
-    allRoutesVaciaTracks: any[] = []
+    allRoutesVaciaInfo: Route[] = []; // Trafico Lento! osea rojo
+    allRoutesVaciaTracks: any[] = [];
+    markersVaciaTracks: any[] = [];
 
 
 
@@ -75,13 +79,7 @@ export class MapsComponent implements OnInit {
                 }
             }
 
-
-            console.log(this.allRoutesConcurridaInfo);
-            console.log(this.allRoutesConcurridaTracks);
-
-
-
-
+            this.putMarkersRoutes();
         });
 
 
@@ -92,10 +90,10 @@ export class MapsComponent implements OnInit {
             for (let i = 0; i < data['data'].length; i++) {
                 const label = data['data'][i]['label'];
 
-                if (label == 'Segura') {
+                if (label === 'Segura') {
                     this.allMarkersGreen.push(data['data'][i]);
 
-                } else if (label == 'Peligrosa') {
+                } else if (label === 'Peligrosa') {
                     this.allMarkersRed.push(data['data'][i]);
                 }
             }
@@ -123,14 +121,64 @@ export class MapsComponent implements OnInit {
         }
     }
 
-    decode(cadena: string[]) {
+    decode(cadena: any[]) {
         let newArray = [];
 
         for (let i = 0; i < cadena.length; i++) {
-            newArray.push(decodePolyline(cadena[i]));
+            newArray.push(decodePolyline(cadena[i][0]));
+
+            for (let j = 0; j < newArray[i].length; j++) {
+                newArray[i][j]['origin']  = cadena[i][1];
+                newArray[i][j]['destiny'] = cadena[i][2];
+            }
         }
 
+
+
         return newArray;
+    }
+
+
+    putMarkersRoutes() {
+        for (let i = 0; i < this.allRoutesConcurridaTracks.length; i++) {
+            for (let j = 0; j < this.allRoutesConcurridaTracks[i].length; j++) {
+                //const index = Math.round(this.allRoutesConcurridaTracks[i][j].length / 2) - 1;
+                const index = 0;
+
+                const json = {
+                    lat: this.allRoutesConcurridaTracks[i][j][index].lat,
+                    lng: this.allRoutesConcurridaTracks[i][j][index].lng,
+                    origin: this.allRoutesConcurridaTracks[i][j][index].origin,
+                    destiny: this.allRoutesConcurridaTracks[i][j][index].destiny,
+                    borough: this.allRoutesConcurridaInfo[i].Borough,
+                    name: this.allRoutesConcurridaInfo[i].Name,
+                    label: this.allRoutesConcurridaInfo[i].label
+                }
+
+                this.markersConcurridaTracks.push(json);
+                //console.log(this.markersConcurridaTracks);
+            }
+        }
+
+        for (let i = 0; i < this.allRoutesVaciaTracks.length; i++) {
+            for (let j = 0; j < this.allRoutesVaciaTracks[i].length; j++) {
+                //const index = Math.round(this.allRoutesVaciaTracks[i][j].length / 2) - 1;
+                const index = 0;
+
+                const json = {
+                    lat: this.allRoutesVaciaTracks[i][j][index].lat,
+                    lng: this.allRoutesVaciaTracks[i][j][index].lng,
+                    origin: this.allRoutesVaciaTracks[i][j][index].origin,
+                    destiny: this.allRoutesVaciaTracks[i][j][index].destiny,
+                    borough: this.allRoutesVaciaInfo[i].Borough,
+                    name: this.allRoutesVaciaInfo[i].Name,
+                    label: this.allRoutesVaciaInfo[i].label
+                }
+
+                this.markersVaciaTracks.push(json);
+            }
+        }
+
     }
 
 

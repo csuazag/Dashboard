@@ -1,6 +1,8 @@
 <div class="main-content">
     <div class="container">
         <div class="row">
+
+
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header card-header-info">
@@ -12,12 +14,10 @@
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="13">
 
                             <div *ngIf="showGreen">
-                                <agm-circle *ngFor="let marker of allMarkersGreen" [latitude]="marker.latitude"
-                                    [longitude]="marker.longitude" [radius]="500" [fillColor]="'green'">
+                                <agm-circle *ngFor="let marker of allMarkersGreen" [latitude]="marker.latitude" [longitude]="marker.longitude" [radius]="500" [fillColor]="'green'">
                                 </agm-circle>
                                 <div *ngIf="showMarkers">
-                                    <agm-marker *ngFor="let marker of allMarkersGreen" [latitude]="marker.latitude"
-                                        [longitude]="marker.longitude">
+                                    <agm-marker *ngFor="let marker of allMarkersGreen" [latitude]="marker.latitude" [longitude]="marker.longitude">
                                         <agm-info-window [disableAutoPan]="true">
                                             {{marker.Borough}}, {{marker.Name}}, <strong> Zona {{marker.label}}</strong>
                                         </agm-info-window>
@@ -26,12 +26,10 @@
                             </div>
 
                             <div *ngIf="!showGreen">
-                                <agm-circle *ngFor="let marker of allMarkersRed" [latitude]="marker.latitude"
-                                    [longitude]="marker.longitude" [radius]="500" [fillColor]="'red'">
+                                <agm-circle *ngFor="let marker of allMarkersRed" [latitude]="marker.latitude" [longitude]="marker.longitude" [radius]="500" [fillColor]="'red'">
                                 </agm-circle>
                                 <div *ngIf="showMarkers">
-                                    <agm-marker *ngFor="let marker of allMarkersRed" [latitude]="marker.latitude"
-                                        [longitude]="marker.longitude">
+                                    <agm-marker *ngFor="let marker of allMarkersRed" [latitude]="marker.latitude" [longitude]="marker.longitude">
                                         <agm-info-window [disableAutoPan]="true">
                                             {{marker.Borough}}, {{marker.Name}}, <strong> Zona {{marker.label}}</strong>
                                         </agm-info-window>
@@ -82,9 +80,7 @@
                 </div>
             </div>
 
-            <!--
 
-            
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header card-header-success">
@@ -93,24 +89,88 @@
                     <div class="card-body">
                         <agm-map [latitude]="lat" [longitude]="lng" [scrollwheel]="false" [zoom]="13">
 
-
-                            <ng-container *ngFor="let barrio of allRoutesConcurridaTracks; let j = index;">
-                                <agm-polyline *ngFor="let tramo of barrio " [strokeColor]="'red'">
-                                    <agm-polyline-point *ngFor="let point of tramo;" [latitude]="point.lat"
-                                        [longitude]="point.lng">
-                                        <agm-info-window [disableAutoPan]="true">
-                                            {{ point.lat}} , {{point.lng}}
-                                        </agm-info-window>
-                                    </agm-polyline-point>
-                                </agm-polyline>
-                            </ng-container>
+                            <div *ngIf="!showRoutesGreen">
+                                <ng-container *ngFor="let barrio of allRoutesConcurridaTracks;">
+                                    <agm-polyline *ngFor="let calle of barrio" [strokeColor]="'red'">
+                                        <agm-polyline-point *ngFor="let point of calle;" [latitude]="point.lat" [longitude]="point.lng">
+                                        </agm-polyline-point>
+                                    </agm-polyline>
+                                </ng-container>
 
 
+                                <agm-marker *ngFor="let marker of markersConcurridaTracks;" [latitude]="marker.lat" [longitude]="marker.lng">
+                                    <agm-info-window>
+                                        <strong> <p>{{ marker.borough }}</p></strong>
+                                        <p> {{ marker.name }} </p>
+                                        <br>
+                                        <p>{{ marker.origin }}</p>
+                                        <p>{{ marker.destiny }}</p>
+                                        <br>
+                                        <p> {{ marker.label }} </p>
+                                    </agm-info-window>
+                                </agm-marker>
+                            </div>
+
+                            <div *ngIf="showRoutesGreen">
+                                <ng-container *ngFor="let barrio of allRoutesVaciaTracks;">
+                                    <agm-polyline *ngFor="let calle of barrio" [strokeColor]="'green'">
+                                        <agm-polyline-point *ngFor="let point of calle;" [latitude]="point.lat" [longitude]="point.lng">
+                                        </agm-polyline-point>
+                                    </agm-polyline>
+                                </ng-container>
+
+
+                                <agm-marker *ngFor="let marker of markersVaciaTracks;" [latitude]="marker.lat" [longitude]="marker.lng">
+                                    <agm-info-window>
+                                        <strong> <p>{{ marker.borough }}</p></strong>
+                                        <p> {{ marker.name }} </p>
+                                        <br>
+                                        <p>{{ marker.origin }}</p>
+                                        <p>{{ marker.destiny }}</p>
+                                        <br>
+                                        <p> {{ marker.label }} </p>
+                                    </agm-info-window>
+                                </agm-marker>
+                            </div>
                         </agm-map>
+
+                        <div class="row mt-5">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" value="concurrida" name="flujo" [(ngModel)]="flujo"> Zona
+                                        Flujo lento
+                                    </label>
+                                    <label class="radio-inline ml-5">
+                                        <input type="radio" value="vacia" name="flujo" [(ngModel)]="flujo">
+                                       Flujo rápido
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button (click)="setRadioFlujo()" class="btn btn-info"> Cambiar</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="radio" value="show" name="hideMarkersFlujo" [(ngModel)]="hideMarkersFlujo">
+                                        Mostrar Markers
+                                    </label>
+                                    <label class="radio-inline ml-5">
+                                        <input type="radio" value="hide" name="hideMarkersFlujo" [(ngModel)]="hideMarkersFlujo">
+                                        Ocultar Markers
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button (click)="setRadioMarkersFlujo()" class="btn btn-info"> Cambiar</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            -->
         </div>
     </div>
 </div>
