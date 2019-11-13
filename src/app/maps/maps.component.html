@@ -82,6 +82,9 @@
                 </div>
             </div>
 
+            <!--
+
+            
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header card-header-success">
@@ -92,10 +95,12 @@
 
 
                             <ng-container *ngFor="let barrio of allRoutesConcurridaTracks; let j = index;">
-                                <agm-polyline *ngFor="let tramo of barrio "
-                                    [strokeColor]="'red'">
+                                <agm-polyline *ngFor="let tramo of barrio " [strokeColor]="'red'">
                                     <agm-polyline-point *ngFor="let point of tramo;" [latitude]="point.lat"
                                         [longitude]="point.lng">
+                                        <agm-info-window [disableAutoPan]="true">
+                                            {{ point.lat}} , {{point.lng}}
+                                        </agm-info-window>
                                     </agm-polyline-point>
                                 </agm-polyline>
                             </ng-container>
@@ -105,6 +110,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </div>
 </div>

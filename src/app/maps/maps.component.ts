@@ -84,23 +84,23 @@ export class MapsComponent implements OnInit {
 
         });
 
-        /**
-          
-         
+
+
+
         this.mapService.getZonas().subscribe(data => {
             this.allMarkers = data['data'];
             for (let i = 0; i < data['data'].length; i++) {
                 const label = data['data'][i]['label'];
- 
+
                 if (label == 'Segura') {
                     this.allMarkersGreen.push(data['data'][i]);
- 
+
                 } else if (label == 'Peligrosa') {
-                    this.allMarkersRed.push(data['data'][i]); 
+                    this.allMarkersRed.push(data['data'][i]);
                 }
-            }            
+            }
         });
-*/
+
     }
 
     ngOnInit() {
