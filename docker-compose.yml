@@ -1,21 +1,8 @@
-version: "2"
+version: '2'
+
 services:
-  nginx:
-    container_name: nginx-server-practica1
-    image: nginx
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./ssl:/etc/nginx/ssl
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - nodeapp
-  nodeapp:
-    container_name: nodeapp-practica1
-    restart: always
+  angularapp: 
     build: .
     ports:
-      - "4200:4200"
-
+    - "80:80"
   

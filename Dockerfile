@@ -1,16 +1,10 @@
+FROM node:latest as node
+WORKDIR /app
+COPY . .
 
-FROM node:12.13.0
+RUN npm install
+RUN npm run build --prod
 
-LABEL version="1.0"
-LABEL description="Web app p2"
-
-ARG PORT=3000
-ENV PORT $PORT
-
-WORKDIR /nodeApp
-COPY . ./
-
-RUN npm install -g
-RUN npm install -g @angular/cli 
-EXPOSE 3000
-CMD ng serve
+FROM nginx:alpine
+COPY --from=node /app/dist/material-dashboard-angular /usr/share/nginx/html
+EXPOSE 80
