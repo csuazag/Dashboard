@@ -10,12 +10,12 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - app
-  app:
-    container_name: app-p2
+      - nodeapp
+  nodeapp:
+    container_name: nodeapp-practica1
     restart: always
     build: .
     ports:
       - "4200:4200"
-    environment:
-      NODE_ENV:
+
+  
