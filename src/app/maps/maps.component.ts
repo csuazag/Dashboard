@@ -31,11 +31,10 @@ interface Route {
 export class MapsComponent implements OnInit {
 
     /**  ZONAS   */
-    showGreen = true;
-    showMarkers = true;
-
-    hideMarkers = 'show';
-    zona = 'segura';
+    showGreen;
+    showMarkers;
+    hideMarkers;
+    zona;
 
     allMarkersGreen: Marker[] = [];
     allMarkersRed: Marker[] = [];
@@ -48,22 +47,39 @@ export class MapsComponent implements OnInit {
 
     /** FLUJO */
 
-    showRoutesGreen = false;
+    
 
     allRoutesInfo: Route[] = [];
     allRoutesTraks: any[] = [];
 
-    allRoutesConcurridaInfo: Route[] = []; // Trafico Rapido! osea verde
+    allRoutesConcurridaInfo: Route[] = []; // Trafico Lento! osea Rojo
     allRoutesConcurridaTracks: any[] = [];
     markersConcurridaTracks: any[] = [];
 
-    allRoutesVaciaInfo: Route[] = []; // Trafico Lento! osea rojo
+    allRoutesVaciaInfo: Route[] = []; // Trafico Rapido! osea Verde
     allRoutesVaciaTracks: any[] = [];
     markersVaciaTracks: any[] = [];
+
+    showRoutesGreen;
+    showMarkersFlujo;
+    flujo;
+    hideMarkersFlujo;
+    
+
 
 
 
     constructor(private mapService: MapService) {
+
+        this.showGreen = true;
+        this.showMarkers = true;
+        this.hideMarkers = 'show';
+        this.zona = 'segura';
+
+        this.showRoutesGreen = true;
+        this.showMarkersFlujo = true;
+        this.flujo = 'vacia';
+        this.hideMarkersFlujo = 'show';
 
         this.mapService.getFlujo().subscribe(data => {
             for (let i = 0; i < data['data'].length; i++) {
@@ -128,7 +144,7 @@ export class MapsComponent implements OnInit {
             newArray.push(decodePolyline(cadena[i][0]));
 
             for (let j = 0; j < newArray[i].length; j++) {
-                newArray[i][j]['origin']  = cadena[i][1];
+                newArray[i][j]['origin'] = cadena[i][1];
                 newArray[i][j]['destiny'] = cadena[i][2];
             }
         }
@@ -179,6 +195,22 @@ export class MapsComponent implements OnInit {
             }
         }
 
+    }
+
+    setRadioFlujo() {
+        if (this.flujo === 'vacia') {
+            this.showRoutesGreen = true;
+        } else {
+            this.showRoutesGreen = false;
+        }
+    }
+
+    setRadioMarkersFlujo() {
+        if (this.hideMarkersFlujo === 'show') {
+            this.showMarkersFlujo = true;
+        } else {
+            this.showMarkersFlujo = false;
+        }
     }
 
 
