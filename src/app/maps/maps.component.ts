@@ -66,6 +66,16 @@ export class MapsComponent implements OnInit {
     hideMarkersFlujo;
     
 
+    /** Flujo  */
+
+    /** Predicción */
+
+    
+
+    altaProbabilidad:any = [];
+
+    /** Predicción */
+
 
 
 
@@ -80,6 +90,7 @@ export class MapsComponent implements OnInit {
         this.showMarkersFlujo = true;
         this.flujo = 'vacia';
         this.hideMarkersFlujo = 'show';
+
 
         this.mapService.getFlujo().subscribe(data => {
             for (let i = 0; i < data['data'].length; i++) {
@@ -113,6 +124,11 @@ export class MapsComponent implements OnInit {
                     this.allMarkersRed.push(data['data'][i]);
                 }
             }
+        });
+
+
+        this.mapService.getAccidentes().subscribe(data => {
+            this.altaProbabilidad = data['data'];
         });
 
     }
